@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "180641701255",
+    "project_id": "cuhacking2021",
+    "storage_bucket": "cuhacking2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180641701255:android:4a1df21b44f864d9320722",
+        "android_client_info": {
+          "package_name": "com.example.flutter_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180641701255-m0mjikc50iaca17ashs413jttt1k5tat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxJhn7Reg6YU4VfLbcpe1J3TmOZIOy0_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180641701255-m0mjikc50iaca17ashs413jttt1k5tat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:180641701255:android:ffb10706f3d4a344320722",
+        "android_client_info": {
+          "package_name": "com.flutter.cuhacking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "180641701255-m0mjikc50iaca17ashs413jttt1k5tat.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBxJhn7Reg6YU4VfLbcpe1J3TmOZIOy0_M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "180641701255-m0mjikc50iaca17ashs413jttt1k5tat.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
