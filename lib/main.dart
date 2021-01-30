@@ -6,6 +6,8 @@ import 'app.dart';
 import 'database/report_db.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import 'models/geolocator.dart';
+
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
@@ -17,6 +19,8 @@ void main() async{
   final localDb = LocalReportDb();
   await localDb.addReport(0);
 
+  Geolocation.getCurrentLocation();
   runApp(MyApp());
 
 }
+
