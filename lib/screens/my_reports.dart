@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/navigation_drawer.dart';
+import 'package:flutter_app/database/report_db.dart';
 
 class MyReports extends StatefulWidget {
   @override
@@ -11,13 +13,15 @@ class MyReports extends StatefulWidget {
 class _MyReportsState extends State<MyReports> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+    ReportDb.getMyActiveReports();
+    print("length : ${ReportDb.myActiveReports.length}");
     return Scaffold(
       appBar: AppBar(
-        title: Text("All Reports"),
+        title: Text("My Reports"),
         centerTitle: true,
         backgroundColor: Colors.red[700],
       ),
+      drawer: NavigationDrawer(),
     );
   }
 }

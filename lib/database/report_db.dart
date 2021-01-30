@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app/database/local_report_db.dart';
 import 'package:flutter_app/models/report.dart';
 
 
@@ -8,8 +10,16 @@ class ReportDb{
 
   static Map<int, Report> reportMap = new Map();
   static List<Report> reportList = new List();
-  static List<Report> myReports = new List();
+  static List<Report> myActiveReports = new List();
   static List<Report> activeReports = new List();
+  static Map<int, bool> reportEnteredList = new Map();
+  static Map<int, bool> myReportEnteredList = new Map();
+
+  static Future<void> initAll() async{
+    await getReportMap();
+    await getReportsList();
+    await getActiveReports();
+  }
 
   static Future<void> getReportMap() async {
 
@@ -39,6 +49,7 @@ class ReportDb{
             latitude,
             longitude);
 
+
         print(
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
       });
@@ -46,7 +57,7 @@ class ReportDb{
 
   }
 
-  static Future<void> getReportsWithId(List<int> ids) async{
+  /*static Future<void> getReportsWithId(List<int> ids) async{
 
     final firestoreInstance = Firestore.instance;
     await firestoreInstance.collection("Reports").getDocuments().then((value) {
@@ -74,7 +85,7 @@ class ReportDb{
             latitude,
             longitude);
 
-        if(ids.contains(id)){
+        if(ids.contains(id) && reportMap[id] == null){
           myReports.add(r);
         }
 
@@ -83,6 +94,44 @@ class ReportDb{
       });
     });
 
+  } */
+
+  static Future<void> getMyActiveReports() async{
+    final localDb = LocalReportDb();
+
+    final firestoreInstance = Firestore.instance;
+    await firestoreInstance.collection("Reports").getDocuments().then((value) {
+      value.documents.forEach((element) async {
+        var data = element.data;
+        int id = int.parse(data["id"]);
+        bool active = data["active"] == "true";
+        String address = data["address"];
+        String contactInfo = data["contactInfo"];
+        List<String> dateTimeList = data["datePosted"].split(" ");
+        DateTime datePosted = new DateTime.utc(
+            int.parse(dateTimeList[2]), int.parse(dateTimeList[1]),
+            int.parse(dateTimeList[0]));
+        String description = data["description"];
+        double latitude = double.parse(data["latitude"]);
+        double longitude = double.parse(data["longitude"]);
+
+        Report r = new Report(
+            id,
+            active,
+            address,
+            contactInfo,
+            datePosted,
+            description,
+            latitude,
+            longitude);
+
+        bool local = await localDb.getId(id);
+        if(local != null && local && myReportEnteredList[id] == null && r.active){
+          myActiveReports.add(r);
+          myReportEnteredList[id] = true;
+        }
+      });
+    });
   }
 
   static Future<void> getReportsList() async{
@@ -113,7 +162,12 @@ class ReportDb{
             latitude,
             longitude);
 
-          reportList.add(r);
+        print(reportEnteredList[id]);
+          if(reportEnteredList[id] == null){
+            print(true);
+            reportEnteredList[id] = true;
+            reportList.add(r);
+          }
 
 
         print(
@@ -152,7 +206,7 @@ class ReportDb{
             latitude,
             longitude);
 
-        if(active){
+        if(active && reportMap[id] == null){
           activeReports.add(r);
         }
 

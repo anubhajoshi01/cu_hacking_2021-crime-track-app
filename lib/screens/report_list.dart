@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/components/navigation_drawer.dart';
 import 'package:flutter_app/database/report_db.dart';
+import 'package:flutter_app/models/report.dart';
 import 'package:flutter_app/screens/report_info.dart';
 
 class ReportList extends StatelessWidget {
@@ -14,9 +16,10 @@ class ReportList extends StatelessWidget {
           centerTitle: true,
           backgroundColor: Colors.red[700],
         ),
+        drawer: NavigationDrawer(),
         body:
         ListView.builder(
-          itemCount:ReportDb.reportList.length,
+          itemCount: ReportDb.reportList.length,
           itemBuilder: (BuildContext context, int index) {
             return Container(
               height: 50,
