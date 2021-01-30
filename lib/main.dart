@@ -6,6 +6,8 @@ void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
   await ReportDb.getReportMap();
+  await ReportDb.getReportsList();
+  await ReportDb.getActiveReports();
 
   runApp(MyApp());
 

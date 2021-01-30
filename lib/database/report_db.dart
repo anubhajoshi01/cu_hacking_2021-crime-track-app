@@ -6,8 +6,13 @@ import 'package:flutter_app/models/report.dart';
 
 class ReportDb{
 
+  static Map<int, Report> reportMap = new Map();
+  static List<Report> reportList = new List();
+  static List<Report> myReports = new List();
+  static List<Report> activeReports = new List();
+
   static Future<void> getReportMap() async {
-    Map<int, Report> reportMap = new Map();
+
     final firestoreInstance = Firestore.instance;
     await firestoreInstance.collection("Reports").getDocuments().then((value) {
       value.documents.forEach((element) {
@@ -38,11 +43,11 @@ class ReportDb{
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
       });
     });
-    return reportMap;
+
   }
 
   static Future<void> getReportsWithId(List<int> ids) async{
-    List<Report> reports = new List();
+
     final firestoreInstance = Firestore.instance;
     await firestoreInstance.collection("Reports").getDocuments().then((value) {
       value.documents.forEach((element) {
@@ -70,18 +75,18 @@ class ReportDb{
             longitude);
 
         if(ids.contains(id)){
-          reports.add(r);
+          myReports.add(r);
         }
 
         print(
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
       });
     });
-    return reports;
+
   }
 
   static Future<void> getReportsList() async{
-    List<Report> reports = new List();
+
     final firestoreInstance = Firestore.instance;
     await firestoreInstance.collection("Reports").getDocuments().then((value) {
       value.documents.forEach((element) {
@@ -109,18 +114,18 @@ class ReportDb{
             longitude);
 
 
-          reports.add(r);
+          reportList.add(r);
 
 
         print(
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
       });
     });
-    return reports;
+
   }
 
   static Future<void> getActiveReports() async{
-    List<Report> reports = new List();
+
     final firestoreInstance = Firestore.instance;
     await firestoreInstance.collection("Reports").getDocuments().then((value) {
       value.documents.forEach((element) {
@@ -148,13 +153,13 @@ class ReportDb{
             longitude);
 
         if(active){
-          reports.add(r);
+          activeReports.add(r);
         }
 
         print(
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
       });
     });
-    return reports;
+
   }
 }

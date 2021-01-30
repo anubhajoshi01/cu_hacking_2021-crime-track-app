@@ -6,7 +6,7 @@ class ReportList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-      title: Text("All Reports"),
+      title: Text("All Reportgit s"),
       centerTitle: true,
       backgroundColor: Colors.red[700],
     ));
