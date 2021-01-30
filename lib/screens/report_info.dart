@@ -29,11 +29,11 @@ class ReportInfo extends StatelessWidget {
               Container(
                   color: Colors.blueGrey[500],
                   child: Text(
-                      'ACTIVE: ${report.active} :: Report ID: ${report.id} :: Location: ${report.address}  ${report.latitude} :: Date Posted${report.datePosted}  ',
+                      'ACTIVE: ${report.active}  Report ID: ${report.id}  Location: ${report.address}   Date Posted${report.datePosted}  ',
                       style: TextStyle(
                         color: Colors.grey[900],
                         fontWeight: FontWeight.bold,
-                        fontSize: 45,
+                        fontSize: 15,
                       )
 
               ),
@@ -45,7 +45,7 @@ class ReportInfo extends StatelessWidget {
                   'Description: ${report.description}',
                     style: TextStyle(
                       color: Colors.grey[900],
-                      fontSize: 35,
+                      fontSize: 20,
                 ),
                 ),
               ),
