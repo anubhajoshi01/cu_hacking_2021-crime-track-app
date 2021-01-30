@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/models/geolocator.dart';
-import 'package:geolocator/geolocator.dart';
+
+import 'package:flutter_app/database/local_report_db.dart';
+import 'package:hive/hive.dart';
 import 'app.dart';
 import 'database/report_db.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
   await ReportDb.getReportMap();
   await ReportDb.getReportsList();
   await ReportDb.getActiveReports();
-  Location l = new Location();
-  Position p = l.getCurrentLocation();
-  print(p);
+
+  await ReportDb.getMyActiveReports();
+  final localDb = LocalReportDb();
+  await localDb.addReport(0);
 
   runApp(MyApp());
 
