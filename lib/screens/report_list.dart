@@ -7,6 +7,7 @@ class ReportList extends StatelessWidget {
 
   @override
     Widget build(BuildContext context){
+    ReportDb.getReportsList();
       return Scaffold(
         appBar: AppBar(
           title: Text("All Reports"),
