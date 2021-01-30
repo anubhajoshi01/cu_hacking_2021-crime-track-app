@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/models/report.dart';
+import 'package:flutter_app/models/geolocator.dart';
 
 class ReportInfo extends StatelessWidget {
 
@@ -23,6 +24,7 @@ class ReportInfo extends StatelessWidget {
           backgroundColor: Colors.blueGrey[300],
         ),
         body: Column(
+
             //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
