@@ -12,10 +12,10 @@ class ReportInfo extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text(
-              'All reports',
+              'Report',
               style: TextStyle(color: Colors.grey[850],
               fontWeight: FontWeight.bold,
-              fontSize: 45,
+              fontSize: 40,
               ),
 
           ),
@@ -23,28 +23,31 @@ class ReportInfo extends StatelessWidget {
           backgroundColor: Colors.blueGrey[300],
         ),
         body: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
-                  color: Colors.blueGrey[500],
+                padding:EdgeInsets.all(5),
+                  //color: Colors.blueGrey[500],
                   child: Text(
-                      'ACTIVE: ${report.active}  Report ID: ${report.id}  Location: ${report.address}   Date Posted${report.datePosted}  ',
+
+                      'ACTIVE: ${report.active}  \nReport ID: ${report.id}  \nLocation: ${report.address} \nContact: ${report.contactInfo} \nDate Posted: ${report.datePosted}  ',
                       style: TextStyle(
                         color: Colors.grey[900],
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 20,
                       )
 
               ),
               ),
               Container(
-                color: Colors.blueGrey[500],
+                //color: Colors.blueGrey[500],
                 padding:EdgeInsets.all(5),
                 child:Text(
                   'Description: ${report.description}',
                     style: TextStyle(
                       color: Colors.grey[900],
+                      //fontWeight: FontWeight.bold,
                       fontSize: 20,
                 ),
                 ),
