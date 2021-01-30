@@ -12,4 +12,8 @@ class Report{
 
   Report(this.id, this.active, this.address, this.contactInfo, this.datePosted, this.description, this.latitude, this.longitude);
 
+  @override
+  String toString(){
+    return ("$id, $active, $address, $contactInfo,$datePosted, $latitude, $longitude");
+  }
 }
