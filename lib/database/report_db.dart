@@ -113,12 +113,12 @@ class ReportDb{
             latitude,
             longitude);
 
-
           reportList.add(r);
 
 
         print(
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
+
       });
     });
 
