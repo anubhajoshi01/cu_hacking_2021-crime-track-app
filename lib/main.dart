@@ -19,7 +19,7 @@ void main() async{
   await ReportDb.getMyActiveReports();
   final localDb = LocalReportDb();
   await localDb.addReport(0);
-
+  await Geolocation.initLocation();
 
   print("latlongstuff");
   print(await Geolocation.getAddressFromLatLong());
