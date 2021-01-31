@@ -8,21 +8,36 @@ import 'create_report.dart';
 class MyReports extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
+
     return _MyReportsState();
   }
 }
 
 class _MyReportsState extends State<MyReports> {
+  List reports = ReportDb.myActiveReports;
   @override
   Widget build(BuildContext context) {
     ReportDb.getMyActiveReports();
-    print("length : ${ReportDb.myActiveReports.length}");
+    print("length : ${reports.length}");
     return Scaffold(
       appBar: AppBar(
         title: Text("My Reports"),
         centerTitle: true,
         backgroundColor: Colors.red[700],
       ),
+      body: ListView.builder(
+        itemCount: reports.length,
+          itemBuilder: (context, index) {
+            return Dismissible(
+              key: Key(reports[index]),
+              child: InkWell(
+                  onTap: () {
+                    print("${reports[index]} clicked");
+                  },
+                  child: ListTile(title: Text('${reports[index]}'))),
+            );
+          },
+        ),
       drawer: NavigationDrawer(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
