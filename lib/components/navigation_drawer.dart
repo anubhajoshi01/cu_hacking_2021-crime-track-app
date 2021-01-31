@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/database/report_db.dart';
 import 'package:flutter_app/screens/my_reports.dart';
 import 'package:flutter_app/screens/report_list.dart';
 import 'package:flutter_app/screens/reports_map.dart';
@@ -21,6 +22,8 @@ class NavigationDrawer extends StatelessWidget {
           ListTile(
             title: Text("My Reports"),
             onTap: () {
+              print("tap");
+
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MyReports()));
             },

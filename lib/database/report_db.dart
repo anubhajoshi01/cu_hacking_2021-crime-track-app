@@ -15,10 +15,21 @@ class ReportDb{
   static Map<int, bool> reportEnteredList = new Map();
   static Map<int, bool> myReportEnteredList = new Map();
 
+  static List<Report> activeReportsTrack = new List();
+
   static Future<void> initAll() async{
     await getReportMap();
     await getReportsList();
     await getActiveReports();
+  }
+
+  static Future<void> fillTrackLists() async{
+    await getMyActiveReports();
+    for(int i = 0; i < myActiveReports.length; i++){
+      print("filltrack");
+      print(myActiveReports[i].id);
+      activeReportsTrack.add(myActiveReports[i]);
+    }
   }
 
   static Future<void> getReportMap() async {
@@ -127,6 +138,9 @@ class ReportDb{
 
         bool local = await localDb.getId(id);
         if(local != null && local && myReportEnteredList[id] == null && r.active){
+          print("my active reports");
+          print(r.address);
+          print(r.active);
           myActiveReports.add(r);
           myReportEnteredList[id] = true;
         }
@@ -216,10 +230,10 @@ class ReportDb{
     });
   }
 
-  static void createReport(String address, double latitude, double longitude, String contactInfo, String description) async{
+  static void createReport(int id, String address, double latitude, double longitude, String contactInfo, String description, DateTime now) async{
     await initAll();
-    int id = reportList.length;
-    var now = new DateTime.now();
+    final localDb = LocalReportDb();
+
     String date = "${now.day} ${now.month} ${now.year}";
     print(date);
     final firestoreInstance = Firestore.instance;
@@ -235,6 +249,12 @@ class ReportDb{
       'datePosted': date,
       'description': description,
     });
+    Report r = new Report(id, true, address, contactInfo, now, description, latitude, longitude);
+    await localDb.addReport(id);
+    ReportDb.reportList.add(r);
+    ReportDb.reportEnteredList[id] = true;
+    ReportDb.myActiveReports.add(r);
+    ReportDb.myReportEnteredList[id] = true;
   }
 
   static Future<void> updateData(int id) async {
@@ -244,6 +264,7 @@ class ReportDb{
           .collection("Reports")
           .document("$id")
           .updateData({'active': 'false'});
+      print("updated");
     } catch (e) {
       print(e.toString());
     }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/models/geolocator.dart';
 import 'package:flutter_app/database/report_db.dart';
 import 'package:flutter_app/models/geolocator.dart';
+import 'package:flutter_app/screens/my_reports.dart';
+import 'package:flutter_app/models/report.dart';
 
 class CreateReport extends StatefulWidget{
   @override
@@ -84,10 +86,17 @@ class _CreateReport extends State<CreateReport>{
           FlatButton(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             color: Colors.red,
-              onPressed:(){
-                ReportDb.createReport(Geolocation.address, Geolocation.latitude, Geolocation.longitude, infoStr, descriptionStr);
-                Navigator.pop(context);
-
+              onPressed:() {
+              print("pressed");
+              int id = ReportDb.reportList.length;
+              var now = new DateTime.now();
+              Report r = new Report(id, true, Geolocation.address, infoStr, now, descriptionStr, Geolocation.latitude, Geolocation.longitude);
+              ReportDb.activeReportsTrack.add(r);
+                ReportDb.createReport(id, Geolocation.address, Geolocation.latitude, Geolocation.longitude, infoStr, descriptionStr, now);
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => MyReports()));
               } ,
               child: Text(
                   "Submit",

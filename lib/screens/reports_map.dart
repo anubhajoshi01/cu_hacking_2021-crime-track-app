@@ -23,12 +23,14 @@ class _ReportsMap extends State<ReportsMap> {
   static const LatLng _center = const LatLng(45.521563, -122.677433);
 
   Widget build(BuildContext context) {
+    print("build map");
     ReportDb.getReportsList();
     for (int i = 0; i < ReportDb.reportList.length; i++) {
       print(i);
       print(ReportDb.reportList[i].address);
       print(ReportDb.reportList[i].latitude);
       print(ReportDb.reportList[i].longitude);
+      print(ReportDb.reportList[i].active);
       markers.add(Marker(
           markerId: MarkerId("$i"),
           position: LatLng(ReportDb.reportList[i].latitude, ReportDb.reportList[i].longitude),
