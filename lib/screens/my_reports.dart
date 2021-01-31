@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/components/navigation_drawer.dart';
 import 'package:flutter_app/database/report_db.dart';
 
+import 'create_report.dart';
+
 class MyReports extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
@@ -22,6 +24,14 @@ class _MyReportsState extends State<MyReports> {
         backgroundColor: Colors.red[700],
       ),
       drawer: NavigationDrawer(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CreateReport()));
+        },
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
     );
   }
 }
