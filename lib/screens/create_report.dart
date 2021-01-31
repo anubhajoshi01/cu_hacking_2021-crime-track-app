@@ -28,16 +28,17 @@ class _CreateReport extends State<CreateReport>{
         backgroundColor: Colors.red[700],
 
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: SingleChildScrollView(
+        child: Container(
+          child: Column(
         children: <Widget>[
           Container(
-            padding: EdgeInsets.symmetric(vertical: 2),
+            padding: EdgeInsets.symmetric(vertical: 40),
             child: Text(
               "Enter your contact information below:",
               style: TextStyle(
                 color: Colors.grey[900],
-                fontSize: 10,
+                fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -46,7 +47,6 @@ class _CreateReport extends State<CreateReport>{
             padding: EdgeInsets.all(3),
             color: Colors.white,
             child: TextField(
-              obscureText: true,
               keyboardType: TextInputType.text,
               onChanged: (input){
                 setState(() {
@@ -56,12 +56,12 @@ class _CreateReport extends State<CreateReport>{
             ),
           ),
           Container(
-            padding: EdgeInsets.symmetric(vertical: 2),
+            padding: EdgeInsets.symmetric(vertical: 40),
             child: Text(
               "Enter a description for the incident/crime ",
               style: TextStyle(
                 color: Colors.grey[900],
-                fontSize:10,
+                fontSize:20,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -70,7 +70,6 @@ class _CreateReport extends State<CreateReport>{
             padding: EdgeInsets.all(3),
             color: Colors.white,
             child: TextField(
-              obscureText: true,
               keyboardType: TextInputType.text,
               onChanged: (input){
                 setState(() {
@@ -79,7 +78,12 @@ class _CreateReport extends State<CreateReport>{
               },
             ),
           ),
+          Container(
+            padding: EdgeInsets.symmetric(vertical: 300.0, horizontal: 5.0),
+          ),
           FlatButton(
+            padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+            color: Colors.red,
               onPressed:(){
                 ReportDb.createReport(Geolocation.address, Geolocation.latitude, Geolocation.longitude, infoStr, descriptionStr);
                 Navigator.pop(context);
@@ -94,7 +98,7 @@ class _CreateReport extends State<CreateReport>{
               )
           )
         ],
-      ),
+      ))),
     );
   }
 
