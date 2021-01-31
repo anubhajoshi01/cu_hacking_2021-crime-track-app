@@ -4,6 +4,17 @@ class Geolocation {
   static final Geolocator geolocator = Geolocator()
     ..forceAndroidLocationManager;
 
+  static String address;
+  static double latitude;
+  static double longitude;
+
+  static Future<void> initLocation() async{
+    address = await getAddressFromLatLong();
+    List<double> latlong = await getLatLong();
+    latitude = latlong[0];
+    longitude = latlong[1];
+  }
+
   static Future<Position> getCurrentLocation() async{
     Position p = await geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
     return p;
