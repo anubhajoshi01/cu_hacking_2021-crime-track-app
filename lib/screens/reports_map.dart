@@ -25,11 +25,16 @@ class _ReportsMap extends State<ReportsMap> {
   Widget build(BuildContext context) {
     ReportDb.getReportsList();
     for (int i = 0; i < ReportDb.reportList.length; i++) {
-      markers.add(new Marker(
-          position: LatLng(Geolocation.latitude, Geolocation.longitude),
+      print(i);
+      print(ReportDb.reportList[i].address);
+      print(ReportDb.reportList[i].latitude);
+      print(ReportDb.reportList[i].longitude);
+      markers.add(Marker(
+          markerId: MarkerId("$i"),
+          position: LatLng(ReportDb.reportList[i].latitude, ReportDb.reportList[i].longitude),
           icon: (ReportDb.reportList[i].active)
-              ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen)
-              : BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed),
+              ? BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueRed)
+              : BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
           onTap: () {
             Navigator.push(
                 context,
@@ -37,6 +42,7 @@ class _ReportsMap extends State<ReportsMap> {
                     builder: (context) => ReportInfo(ReportDb.reportList[i])));
           }));
     }
+    print("length ${markers.length}");
     return Scaffold(
       appBar: AppBar(
         title: Text("All Reports"),
@@ -44,6 +50,7 @@ class _ReportsMap extends State<ReportsMap> {
       ),
       drawer: NavigationDrawer(),
       body: GoogleMap(
+          markers: markers,
           initialCameraPosition: CameraPosition(
               target: LatLng(Geolocation.latitude, Geolocation.longitude),
               zoom: 12)),
