@@ -237,4 +237,16 @@ class ReportDb{
     });
   }
 
+  static Future<void> updateData(int id) async {
+    try {
+      final firestoreInstance = Firestore.instance;
+      await firestoreInstance
+          .collection("Reports")
+          .document("$id")
+          .updateData({'active': 'false'});
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
 }
