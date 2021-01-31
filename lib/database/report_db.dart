@@ -214,6 +214,9 @@ class ReportDb{
             "id: $id, active:$active, address:$address, contact info:$contactInfo");
       });
     });
+  }
+
+  void createReport(int id, String address, String contactInfo, String description) async{
 
   }
 }
