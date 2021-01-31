@@ -220,18 +220,19 @@ class ReportDb{
     await initAll();
     int id = reportList.length;
     var now = new DateTime.now();
-    String date = "${now.day} ${now.month} ${now.year};";
+    String date = "${now.day} ${now.month} ${now.year}";
     print(date);
     final firestoreInstance = Firestore.instance;
     await firestoreInstance.collection("Reports")
         .document("$id")
         .setData({
+      'id': "$id",
       'active': 'true',
       'address': address,
       'latitude': "$latitude",
       'longitude': "$longitude",
       'contactInfo': contactInfo,
-      'dataposted': date,
+      'datePosted': date,
       'description': description,
     });
   }
