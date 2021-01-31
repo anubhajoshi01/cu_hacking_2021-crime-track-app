@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_app/database/local_report_db.dart';
+import 'package:flutter_app/models/geolocator.dart';
 import 'package:hive/hive.dart';
 import 'app.dart';
 import 'database/report_db.dart';
@@ -19,7 +20,13 @@ void main() async{
   final localDb = LocalReportDb();
   await localDb.addReport(0);
 
-  Geolocation.getCurrentLocation();
+
+  print("latlongstuff");
+  print(await Geolocation.getAddressFromLatLong());
+  List<double> latlong= await Geolocation.getLatLong();
+  print(latlong[0]);
+  print(latlong[1]);
+
   runApp(MyApp());
 
 }

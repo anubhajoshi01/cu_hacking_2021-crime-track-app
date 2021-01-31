@@ -4,15 +4,13 @@ class Geolocation {
   static final Geolocator geolocator = Geolocator()
     ..forceAndroidLocationManager;
 
-  static void getCurrentLocation() async {
-
-    final position = await Geolocator().getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
-    print("I have been here");
-    print(position);
+  static Future<Position> getCurrentLocation() async{
+    Position p = await geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return p;
   }
 
-   /*Future<void> Future<String>  async getAddressFromLatLng() async {
-    Position pos = _getCurrentLocation();
+  static Future<String> getAddressFromLatLong() async {
+    Position pos = await getCurrentLocation();
     try {
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           pos.latitude, pos.longitude);
@@ -22,5 +20,13 @@ class Geolocation {
       print(e);
       return "Error getting location";
     }
-  }*/
+  }
+
+  static Future<List<double>> getLatLong() async{
+    Position pos = await getCurrentLocation();
+    List<double> latlong = new List();
+    latlong.add(pos.latitude);
+    latlong.add(pos.longitude);
+    return latlong;
+  }
 }
