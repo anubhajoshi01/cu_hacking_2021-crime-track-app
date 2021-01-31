@@ -36,13 +36,6 @@ class ReportList extends StatelessWidget {
                     ),
                   )));
             }),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => CreateReport()));
-          },
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
-        ));
+        );
   }
 }
