@@ -27,6 +27,7 @@ void main() async{
   print(latlong[0]);
   print(latlong[1]);
 
+  // ReportDb.createReport("sdcsd", 2739.2, 122.3, "sduhc", "237hdxasjs");
   runApp(MyApp());
 
 }

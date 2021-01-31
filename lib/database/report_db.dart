@@ -216,7 +216,24 @@ class ReportDb{
     });
   }
 
-  void createReport(String address, double latitude, double longitude, String contactInfo, String description) async{
-
+  static void createReport(String address, double latitude, double longitude, String contactInfo, String description) async{
+    await initAll();
+    int id = reportList.length;
+    var now = new DateTime.now();
+    String date = "${now.day} ${now.month} ${now.year};";
+    print(date);
+    final firestoreInstance = Firestore.instance;
+    await firestoreInstance.collection("Reports")
+        .document("$id")
+        .setData({
+      'active': 'true',
+      'address': address,
+      'latitude': "$latitude",
+      'longitude': "$longitude",
+      'contactInfo': contactInfo,
+      'dataposted': date,
+      'description': description,
+    });
   }
+
 }
