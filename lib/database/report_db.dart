@@ -216,7 +216,7 @@ class ReportDb{
     });
   }
 
-  void createReport(int id, String address, String contactInfo, String description) async{
+  void createReport(String address, double latitude, double longitude, String contactInfo, String description) async{
 
   }
 }
