@@ -14,4 +14,4 @@ Database: Both local database and cloud database are used. Team members spend ti
 Future plans:
 We would love to have a photo feature where users are able to take photos of the incident and are able to upload it into the app. We would like to have an authentication of the photos/incident reports provided by the users, making sure that new incidents are not fraudulent or spam keeping the app proper. 
 
-Libraries used: cloud firestore, firebase analytics, hive, permission handler, google maps flutter
+Libraries used: cloud firestore, firebase analytics, hive, permission handler, google maps flutter, geolocator
